@@ -1,18 +1,25 @@
-<table class="table table-hover table-striped mt-3">
-	<thead class="table-dark">
-	<tr>
-		<th></th>
-		<th>Product Name</th>
-		<th>Price</th>
-		<th>Stock</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr *ngFor="let product of productList; let i = index">
-		<td ><img src="{{product.imageUrl}}" alt="product-img" height="50"></td>
-		<td>{{ product.name }}</td>
-		<td>{{ product.unitPrice | currency:'USD' }}</td>
-		<td>{{ product.unitsInStock }}</td>
-	</tr>
-	</tbody>
-</table>
+<div class="main-content">
+	<div class="section-content section-content-p30">
+		<div class="container-fluid">
+			<div class="row">
+
+				<!-- Product Div -->
+				<div class="col-md-3" *ngFor="let product of productList">
+					<div class="product-box">
+						<a href="product-detail.html">
+							<img src="{{product.imageUrl}}" class="img-responsive">
+						</a>
+						<a href="product-detail.html">
+							<h1>{{product.name}}</h1>
+						</a>
+						<h2>{{product.description}}</h2>
+						<div class="price">{{product.unitPrice | currency:'USD'}}</div>
+						<a href="#" class="primary-btn">Add to cart</a>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

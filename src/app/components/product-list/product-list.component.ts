@@ -17,8 +17,8 @@ export class ProductListComponent implements OnInit{
 	ngOnInit() {
 		this.productService.getProductList().subscribe({
 			next: (data: Product[]) => this._productList = data,
-			error: (error) => console.log(`Error ${error}`),
-			complete: () => console.log("Complated"),
+			error: (error) => console.log(`Error ${JSON.stringify(error)}`),
+			complete: () => console.log("Completed"),
 		});
 	}
 
