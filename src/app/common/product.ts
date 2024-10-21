@@ -1,3 +1,5 @@
+import {ProductCategory} from './product-category';
+
 export class Product {
 
 	constructor(private _sku: string,
@@ -7,6 +9,7 @@ export class Product {
 				private _imageUrl: string,
 				private _active: boolean,
 				private _unitsInStock: number,
+				private _productCategory: ProductCategory,
 				private _dateCreated: Date,
 				private _lastUpdate: Date) {
 	}
@@ -38,6 +41,11 @@ export class Product {
 
 	get unitsInStock(): number {
 		return this._unitsInStock;
+	}
+
+
+	get productCategory(): ProductCategory {
+		return this._productCategory;
 	}
 
 	get dateCreated(): Date {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../common/product';
+import {ActivatedRoute, ParamMap, Route, Router, RouterLink, Routes} from '@angular/router';
 
 @Component({
 	selector: 'app-product-list',
@@ -10,20 +11,44 @@ import {Product} from '../../common/product';
 export class ProductListComponent implements OnInit{
 
 	private _productList: Product[] = [];
+	private currentCategoryId?: number | null;
 
-	constructor(private productService: ProductService) {
+	constructor(private productService: ProductService,
+				route: ActivatedRoute) {
+
+		route.paramMap.subscribe({
+			next: (paramMap: ParamMap) => {
+				if(paramMap.has('productCategoryId') ){
+					this.currentCategoryId = <number | null>paramMap.get('productCategoryId');
+					if(this.currentCategoryId){
+						this.listProductsByCategoryId(this.currentCategoryId);
+					}
+				} else {
+					this.listProducts()
+				}
+			}
+		});
 	}
 
 	ngOnInit() {
-		this.productService.getProductList().subscribe({
-			next: (data: Product[]) => this._productList = data,
-			error: (error) => console.log(`Error ${JSON.stringify(error)}`),
-			complete: () => console.log("Completed"),
-		});
 	}
 
 	public get productList(): Product[] {
 		return this._productList;
+	}
+
+	private listProducts(): void {
+		this.productService.getProductList(1, 100).subscribe({
+			next: (data: Product[]) => this._productList = data,
+			error: (error) => console.log(`Error ${JSON.stringify(error)}`)
+		});
+	}
+
+	private listProductsByCategoryId(categoryId: number): void {
+		this.productService.getProductListByCategoryId(categoryId,1, 100).subscribe({
+			next: (data: Product[]) => this._productList = data,
+			error: (error) => console.log(`Error ${JSON.stringify(error)}`)
+		});
 	}
 
 
