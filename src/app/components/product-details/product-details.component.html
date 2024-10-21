@@ -1,0 +1,22 @@
+<!-- MAIN CONTENT-->
+<div class="main-content">
+	<div class="section-content section-content-p30">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div *ngIf="currentProduct">
+					<img src="{{currentProduct.imageUrl}}" class="img-responsive" width="300px">
+
+					<h3>{{ currentProduct.name }}</h3>
+					<div class="price">{{currentProduct.unitPrice | currency:'USD'}}</div>
+					<a href="shopping-detail.html" class="primary-btn">Add to cart</a>
+
+					<h4>Product Description</h4>
+					<p>{{currentProduct.description}}</p>
+
+					<a routerLink="/products">Back to Product List</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -2,7 +2,8 @@ import {ProductCategory} from './product-category';
 
 export class Product {
 
-	constructor(private _sku: string,
+	constructor(private _id: number,
+				private _sku: string,
 				private _name: string,
 				private _description: string,
 				private _unitPrice: number,
@@ -15,6 +16,12 @@ export class Product {
 	}
 
 	// Getters
+
+
+	get id(): number {
+		return this._id;
+	}
+
 	get sku(): string {
 		return this._sku;
 	}
