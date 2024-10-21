@@ -1,55 +1,59 @@
 <div class="main-content">
 	<div class="section-content section-content-p30">
-		<div class="container-fluid">
-			<div class="row">
+		<!-- Pagination -->
+		<div class="row justify-content-center">
 
-				<!-- Product Div -->
-				<div class="col-md-3" *ngFor="let product of productList">
-					<div class="product-box">
-						<a routerLink="/products/{{product.id}}">
-							<img src="{{product.imageUrl}}" class="img-responsive">
-						</a>
-						<a routerLink="/products/{{product.id}}">
-							<h1 style="height: 80px;">{{ product.name }}</h1>
-						</a>
-						<h2 style="height: 40px;">{{ product.productCategory.categoryName }}</h2>
-						<h2 style="height: 150px;">{{ product.description }}</h2>
-						<div class="price">{{ product.unitPrice | currency:'USD' }}</div>
-						<a href="#" class="primary-btn">Add to cart</a>
+			<div class="col-md-8">
+				<ngb-pagination #pagination
+								[page]="productPage.page.number + 1"
+								[pageSize]="productPage.page.size"
+								[collectionSize]="productPage.page.totalElements"
+								[maxSize]="8"
+								[boundaryLinks]="true"
+								(pageChange)="changePage(pagination.page)">
+				</ngb-pagination>
+
+			</div>
+			<div class="col-md-4">
+				<label for="pageSizeSelect">Page Size: &nbsp;</label>
+				<select #pageSizeSelect
+						class="form-select-sm"
+						id="pageSizeSelect"
+						(change)="updatePageSize(pageSizeSelect.value)">
+					<option >5</option>
+					<option selected>10</option>
+					<option>20</option>
+					<option>50</option>
+
+				</select>
+			</div>
+
+
+			<div class="container-fluid">
+
+				<div class="row">
+
+					<!-- Product Div -->
+					<div class="col-md-3" *ngFor="let product of productPage.content">
+						<div class="product-box">
+							<a routerLink="/products/{{product.id}}">
+								<img src="{{product.imageUrl}}" class="img-responsive">
+							</a>
+							<a routerLink="/products/{{product.id}}">
+								<h1 style="height: 80px;">{{ product.name }}</h1>
+							</a>
+							<h2 style="height: 40px;">{{ product.productCategory.categoryName }}</h2>
+							<h2 style="height: 150px;">{{ product.description }}</h2>
+							<div class="price">{{ product.unitPrice | currency:'USD' }}</div>
+							<a href="#" class="primary-btn">Add to cart</a>
+						</div>
 					</div>
-				</div>
 
-				<!-- No products found message -->
-				<div *ngIf="productList?.length == 0"
-					 class="alert alert-warning col-md-12"
-					 role="alert">
-					No products found.
-				</div>
-
-				<!-- Pagination -->
-				<div class="footer-pagination">
-					<div class="row">
-						<div class="col-md-3"></div>
-						<div class="col-md-3">
-							<div class="items">
-								<label>Item per page</label>
-								<select>
-									<option>10</option>
-									<option>20</option>
-									<option>30</option>
-									<option>40</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="number">1 - 10 of 100</div>
-						</div>
-						<div class="col-md-4">
-							<div class="arrows">
-								<a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
-								<a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-							</div>
-						</div>
+					<!-- No products found message -->
+					<div *ngIf="productPage.content.length == 0"
+						 class="alert alert-warning col-md-12"
+						 role="alert">
+						No products found.
 					</div>
 				</div>
 
@@ -57,4 +61,3 @@
 			</div>
 		</div>
 	</div>
-</div>

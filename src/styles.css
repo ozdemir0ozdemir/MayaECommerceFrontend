@@ -111,7 +111,8 @@ a,a:hover{
 }
 
 .page-container{
-	background:#e5e5e5;
+	/*background:#e5e5e5;*/
+	background: #ffffff;
 	padding-left:200px
 }
 
@@ -974,7 +975,7 @@ footer ul li{
 		text-align:center
 	}
 	.product-box{
-		text-align:centerg
+		text-align:center
 	}
 	.page-container{
 		position:relative;

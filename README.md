@@ -21,3 +21,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## To be fixed list
 - ui pagination
 - Product service pageable request
+- use products sku codes instead of ids
+- use categories code_name

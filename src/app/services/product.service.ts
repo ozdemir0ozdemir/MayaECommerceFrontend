@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {Product} from '../common/product';
 import {ProductCategory} from '../common/product-category';
+import {ProductPage} from '../common/product-page';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,14 +15,15 @@ export class ProductService {
 	constructor(private httpClient: HttpClient) {
 	}
 
-	getProductList(page: number = 1, size: number = 20): Observable<Product[]> {
-		return this.httpClient.get<Product[]>(`${this.baseUrl}?page=${page}&size=${size}`);
+	getProductList(page: number = 1, size: number = 20): Observable<ProductPage> {
+		return this.httpClient.get<ProductPage>(`${this.baseUrl}?page=${page}&size=${size}`);
 	}
+
 
 	getProductListByCategoryId(productCategoryId: number = 1,
 							   page: number = 1,
-							   size: number = 20): Observable<Product[]> {
-		return this.httpClient.get<Product[]>(`${this.baseUrl}/category/${productCategoryId}?page=${page}&size=${size}`);
+							   size: number = 20): Observable<ProductPage> {
+		return this.httpClient.get<ProductPage>(`${this.baseUrl}/category/${productCategoryId}?page=${page}&size=${size}`);
 	}
 
 	getProductCategories() : Observable<ProductCategory[]> {
@@ -30,8 +32,8 @@ export class ProductService {
 
 	searchProductByNameContaining(name: string,
 								  page: number = 1,
-								  size: number = 20) : Observable<Product[]> {
-		return this.httpClient.get<Product[]>(`${this.baseUrl}/search?name=${name}&page=${page}&size=${size}`);
+								  size: number = 20) : Observable<ProductPage> {
+		return this.httpClient.get<ProductPage>(`${this.baseUrl}/search?name=${name}&page=${page}&size=${size}`);
 	}
 
 	getProductByProductId(productId: number): Observable<Product> {
