@@ -23,7 +23,11 @@ export class ProductListComponent implements OnInit{
 					if(this.currentCategoryId){
 						this.listProductsByCategoryId(this.currentCategoryId);
 					}
-				} else {
+				}
+				else if (paramMap.has('keyword')) {
+					this.listProductsByNameContaining(<string>paramMap.get('keyword'))
+				}
+				else {
 					this.listProducts()
 				}
 			}
@@ -46,6 +50,13 @@ export class ProductListComponent implements OnInit{
 
 	private listProductsByCategoryId(categoryId: number): void {
 		this.productService.getProductListByCategoryId(categoryId,1, 100).subscribe({
+			next: (data: Product[]) => this._productList = data,
+			error: (error) => console.log(`Error ${JSON.stringify(error)}`)
+		});
+	}
+
+	private listProductsByNameContaining(keyword: string): void {
+		this.productService.searchProductByNameContaining(keyword,1, 100).subscribe({
 			next: (data: Product[]) => this._productList = data,
 			error: (error) => console.log(`Error ${JSON.stringify(error)}`)
 		});

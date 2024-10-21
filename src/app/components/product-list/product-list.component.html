@@ -10,13 +10,20 @@
 							<img src="{{product.imageUrl}}" class="img-responsive">
 						</a>
 						<a href="product-detail.html">
-							<h1>{{ product.name }}</h1>
+							<h1 style="height: 80px;">{{ product.name }}</h1>
 						</a>
-						<h2>{{ product.productCategory.categoryName }}</h2>
-						<h2>{{ product.description }}</h2>
+						<h2 style="height: 40px;">{{ product.productCategory.categoryName }}</h2>
+						<h2 style="height: 150px;">{{ product.description }}</h2>
 						<div class="price">{{ product.unitPrice | currency:'USD' }}</div>
 						<a href="#" class="primary-btn">Add to cart</a>
 					</div>
+				</div>
+
+				<!-- No products found message -->
+				<div *ngIf="productList?.length == 0"
+					 class="alert alert-warning col-md-12"
+					 role="alert">
+					No products found.
 				</div>
 
 				<!-- Pagination -->
@@ -37,7 +44,7 @@
 						<div class="col-md-2">
 							<div class="number">1 - 10 of 100</div>
 						</div>
-						<div class="col-md-1">
+						<div class="col-md-4">
 							<div class="arrows">
 								<a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
 								<a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>

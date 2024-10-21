@@ -28,4 +28,10 @@ export class ProductService {
 		return this.httpClient.get<ProductCategory[]>(`${this.baseUrl}/categories`);
 	}
 
+	searchProductByNameContaining(name: string,
+								  page: number = 1,
+								  size: number = 20) : Observable<Product[]> {
+		return this.httpClient.get<Product[]>(`${this.baseUrl}/search?name=${name}&page=${page}&size=${size}`);
+	}
+
 }

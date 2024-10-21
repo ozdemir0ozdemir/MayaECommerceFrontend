@@ -19,7 +19,7 @@ export class ProductCategoryMenuComponent implements OnInit{
 			next: (value: ProductCategory[]) => this.productCategories = value,
 			error: err => console.log(JSON.stringify(err))
 		})
-
 	}
+
 
 }
