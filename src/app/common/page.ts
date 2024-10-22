@@ -1,13 +1,16 @@
 
 export class Page {
 
-	constructor(private _size: number,
-				private _number:number,
-				private _totalElements: number,
-				private _totalPages: number) {
+	private _size: number = 0;
+	private _number:number = 0;
+	private _totalElements: number = 0;
+	private _totalPages: number = 0;
+
+	constructor() {
 	}
 
 
+	// Getters
 	get size(): number {
 		return this._size;
 	}

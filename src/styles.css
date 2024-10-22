@@ -106,13 +106,13 @@ a,a:hover{
 
 .page-wrapper{
 	overflow:hidden;
-	background:#e5e5e5;
+	background:white;
 	padding-bottom:8vh
 }
 
 .page-container{
-	/*background:#e5e5e5;*/
-	background: #ffffff;
+	/*background:white;*/
+	background: white;
 	padding-left:200px
 }
 
@@ -225,7 +225,7 @@ input.au-input.au-input-xl{
 
 .au-input{
 	line-height:43px;
-	border:1px solid #e5e5e5;
+	border:1px solid white;
 	font-size:14px;
 	color:#666;
 	padding:0 17px;
@@ -341,7 +341,7 @@ input.au-input.au-input-xl{
 	-webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
 	-moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
-	border-right:1px solid #e5e5e5;
+	border-right:1px solid white;
 	position:relative;
 	z-index:3
 }
@@ -567,7 +567,7 @@ input.au-input.au-input-xl{
  */
 
 .form-area{
-	background:#e5e5e5;
+	background:white;
 	position:relative;
 	margin-bottom:45px;
 	padding:50px 20px;
@@ -577,7 +577,7 @@ input.au-input.au-input-xl{
 	position:absolute;
 	top:-26px;
 	left:13px;
-	background:#e5e5e5;
+	background:white;
 	padding:10px 20px;
 	font-weight:500;
 	z-index:23;
@@ -629,7 +629,7 @@ input.au-input.au-input-xl{
 	height:22px;
 	width:22px;
 	background-color:#fff!important;
-	border:2px solid #e5e5e5;
+	border:2px solid white;
 	-webkit-border-radius:2px;
 	-moz-border-radius:2px;
 	border-radius:2px
@@ -845,7 +845,7 @@ footer ul li{
 		padding-left:0
 	}
 	.page-wrapper{
-		background:#e5e5e5;
+		background:white;
 		padding-bottom:12vh
 	}
 	.main-content{

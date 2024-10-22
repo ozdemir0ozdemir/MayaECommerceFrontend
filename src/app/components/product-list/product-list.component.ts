@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {ProductPage} from '../../common/product-page';
+import {DataPage} from '../../common/data-page';
 import {Page} from '../../common/page';
 import {Observer} from 'rxjs';
+import {Product} from '../../common/product';
+import {CartService} from '../../services/cart.service';
+import {CartItem} from '../../common/cart-item';
 
 
 @Component({
@@ -16,7 +19,7 @@ export class ProductListComponent{
 	private readonly defaultPage: number = 1;
 	private pageSize: number = 10;
 
-	protected productPage: ProductPage = ProductPage.ofDefault(this.defaultPage, this.pageSize);
+	protected productPage: DataPage<Product> = new DataPage();
 	private currentCategoryId: number = 1;
 	private currentSearchedKeyword: string = "";
 
@@ -25,6 +28,7 @@ export class ProductListComponent{
 
 
 	constructor(private productService: ProductService,
+				private cartService: CartService,
 				route: ActivatedRoute) {
 
 		route.paramMap.subscribe({
@@ -47,6 +51,7 @@ export class ProductListComponent{
 		});
 	}
 
+	// UI Methods
 	protected changePage(page: number): void {
 		if (this.isCategoryBasedFiltered) {
 			this.listProductsByCategoryId(this.currentCategoryId, page, this.pageSize);
@@ -64,6 +69,11 @@ export class ProductListComponent{
 		this.changePage(this.productPage.page.number);
 	}
 
+	protected addToCart(product: Product): void {
+		this.cartService.addToCart(new CartItem(product));
+	}
+
+	// Private Methods
 	private listProducts(page: number, size: number): void {
 		this.productService.getProductList(page, size)
 			.subscribe(this.assignProductPage());
@@ -79,9 +89,9 @@ export class ProductListComponent{
 			.subscribe(this.assignProductPage());
 	}
 
-	private assignProductPage(): Partial<Observer<ProductPage>> {
+	private assignProductPage(): Partial<Observer<DataPage<Product>>> {
 		return {
-			next: (data: ProductPage) => this.productPage = data,
+			next: (data: DataPage<Product>) => this.productPage = data,
 			error: (error) => console.log(`Error ${JSON.stringify(error)}`)
 		};
 	}
